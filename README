@@ -1,1 +1,438 @@
 It is an application that use CakePHP(ver 1.3.4)!
+You shold create tables like that!
+
+---
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+
+CREATE TABLE `ads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `answers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `body` varchar(128) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `body` text NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `banks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `work` varchar(128) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `rest` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `bjs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `coin` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `buyers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `town_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `buyer_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `buyer_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `stock` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cards` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `coin` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `success` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `chats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `body` varchar(128) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `article_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `entries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `forums` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `houses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(16) NOT NULL,
+  `image` varchar(32) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `town_id` int(11) NOT NULL,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `forum_id` int(11) NOT NULL,
+  `shop_id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ips` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `ip` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(16) NOT NULL,
+  `type` varchar(16) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `asin` varchar(128) NOT NULL,
+  `image` varchar(512) NOT NULL,
+  `price` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `limit` int(11) NOT NULL,
+  `span` int(11) NOT NULL,
+  `explain` varchar(128) NOT NULL,
+  `height` int(11) NOT NULL,
+  `weight` float NOT NULL,
+  `special` text NOT NULL,
+  `stock` int(11) NOT NULL,
+  `rand` int(11) NOT NULL,
+  `energy` int(11) NOT NULL,
+  `spirit` int(11) NOT NULL,
+  `language` int(11) NOT NULL,
+  `math` int(11) NOT NULL,
+  `science` int(11) NOT NULL,
+  `society` int(11) NOT NULL,
+  `arm` int(11) NOT NULL,
+  `leg` int(11) NOT NULL,
+  `quick` int(11) NOT NULL,
+  `soft` int(11) NOT NULL,
+  `beauty` int(11) NOT NULL,
+  `attent` int(11) NOT NULL,
+  `skill` int(11) NOT NULL,
+  `lucky` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(16) NOT NULL,
+  `career` int(11) NOT NULL,
+  `office_id` int(11) NOT NULL,
+  `bmi_min` int(11) NOT NULL,
+  `bmi_max` int(11) NOT NULL,
+  `sex` tinyint(1) NOT NULL,
+  `salary` int(11) NOT NULL,
+  `bonus` int(11) NOT NULL,
+  `salary_id` int(11) NOT NULL,
+  `energy` int(11) NOT NULL,
+  `spirit` int(11) NOT NULL,
+  `language` int(11) NOT NULL,
+  `math` int(11) NOT NULL,
+  `science` int(11) NOT NULL,
+  `society` int(11) NOT NULL,
+  `arm` int(11) NOT NULL,
+  `leg` int(11) NOT NULL,
+  `quick` int(11) NOT NULL,
+  `soft` int(11) NOT NULL,
+  `beauty` int(11) NOT NULL,
+  `attent` int(11) NOT NULL,
+  `skill` int(11) NOT NULL,
+  `lucky` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` int(11) NOT NULL,
+  `to` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `body` text NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(32) NOT NULL,
+  `body` text NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `offices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `sex` tinyint(1) NOT NULL,
+  `status` varchar(0) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `image` varchar(16) NOT NULL,
+  `born` date NOT NULL,
+  `eat` datetime NOT NULL,
+  `spa` datetime NOT NULL,
+  `study` datetime NOT NULL,
+  `town_id` int(11) NOT NULL DEFAULT '3',
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `money` bigint(20) NOT NULL DEFAULT '1000000',
+  `bank` int(11) NOT NULL,
+  `coin` int(11) NOT NULL,
+  `user_job_id` int(11) NOT NULL,
+  `health` int(11) NOT NULL DEFAULT '10',
+  `height` int(11) NOT NULL,
+  `weight` float NOT NULL,
+  `energy` int(11) NOT NULL,
+  `spirit` int(11) NOT NULL,
+  `language` int(11) NOT NULL,
+  `math` int(11) NOT NULL,
+  `science` int(11) NOT NULL,
+  `society` int(11) NOT NULL,
+  `arm` int(11) NOT NULL,
+  `leg` int(11) NOT NULL,
+  `quick` int(11) NOT NULL,
+  `soft` int(11) NOT NULL,
+  `beauty` int(11) NOT NULL,
+  `attent` int(11) NOT NULL,
+  `skill` int(11) NOT NULL,
+  `lucky` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `questions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `message` varchar(512) NOT NULL,
+  `choice` int(11) NOT NULL,
+  `add` smallint(6) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `responses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `salaries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `span` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `schools` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `price` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `energy` int(11) NOT NULL,
+  `spirit` int(11) NOT NULL,
+  `language` int(11) NOT NULL,
+  `math` int(11) NOT NULL,
+  `science` int(11) NOT NULL,
+  `society` int(11) NOT NULL,
+  `arm` int(11) NOT NULL,
+  `leg` int(11) NOT NULL,
+  `quick` int(11) NOT NULL,
+  `soft` int(11) NOT NULL,
+  `beauty` int(11) NOT NULL,
+  `attent` int(11) NOT NULL,
+  `skill` int(11) NOT NULL,
+  `lucky` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `shops` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `shop_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `shop_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `stock` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `spas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `cost` int(11) NOT NULL,
+  `energy` int(11) NOT NULL,
+  `spirit` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `stores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `store_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `rest` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `themes` (
+  `no` int(11) NOT NULL,
+  `title` varchar(32) NOT NULL,
+  `comment` varchar(128) NOT NULL,
+  `id` varchar(16) NOT NULL,
+  `name` varchar(16) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `threads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `updated` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `towns` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `price` int(11) NOT NULL,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ufos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `coin` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(16) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `image` varchar(32) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `rest` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user_jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `point` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `votes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `answer_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
